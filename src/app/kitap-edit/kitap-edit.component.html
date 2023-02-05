@@ -1,0 +1,61 @@
+
+
+
+ 
+    <div class="row" style="padding-top: 20px;">
+        <div class="col">
+         
+
+
+
+<div class="alert alert-success" role="alert" *ngIf="show">
+  Kitap kaydedildi.
+</div>
+<form #f="ngForm" (ngSubmit)="onSubmit()"> 
+    <div class="form-group">
+      <label for="txtKitapAdi">Kitap Adı</label>
+      <input type="text" 
+             class="form-control" 
+             id="txtKitapAdi" 
+             placeholder="Kitap Adı"
+             ngModel
+             name="adi"
+             required>
+    </div>
+    <div class="form-group">
+        <label for="txtKitapYazari">Kitap Yazarı</label>
+        <input type="text" 
+               class="form-control" 
+               id="txtKitapYazari" 
+               placeholder="Kitap Yazarı"
+               ngModel
+               name="yazar"
+               required
+               yazar
+               #yazar="ngModel">
+               <span class="help-block" *ngIf="!yazar.valid && yazar.touched">Yazar adını giriniz.</span>
+    </div>
+    <div class="form-group" >
+        <label for="txtKitapKonusu">Kitap Konusu</label>
+        <textarea rows="3" 
+                  class="form-control" 
+                  id="txtKitapKonusu" 
+                  placeholder="Kitap Konusu"
+                  ngModel
+                  name="konu"
+                  required></textarea>
+    </div>
+    <div class="form-group" style="padding-bottom:10px">
+        <label for="kitapPuan">Puan</label>
+        <input type="range" 
+               class="form-control-range" 
+               id="kitapPuan"
+               ngModel
+               name="puan">
+      </div>
+    <button type="submit" 
+            class="btn btn-primary"
+            [disabled]="!f.valid" >Kaydet</button>
+  </form>
+</div>
+</div>

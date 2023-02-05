@@ -1,0 +1,57 @@
+
+
+
+
+    <div class="row" style="padding-top:20px;">
+      <div class="col">
+        <form (ngSubmit)="kitapAra()" #f="ngForm">
+          <div class="form-group" style="padding-bottom: 20px;">
+              <label for="">Kitap Adı</label>
+              <input name="kitapAdi"
+                     type="text"
+                     id="txtKitapAdi"
+                     class="form-control"
+                     ngModel
+                     />
+          </div>
+          <button type="submit"
+                  class="btn btn-primary">Sorgula</button>
+                  |
+          <button class="btn btn-success" type="button" (click)="onRefresh()">Yenile</button>
+        </form>
+      </div>
+    </div>
+ 
+    <div class="row" style="padding-top: 20px;">
+        <div class="col">
+    
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Kitap</th>
+                <th scope="col">Yazar</th>
+                <th scope="col">Konu</th>
+                <th scope="col">Puan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let kitap of kitaplar">
+                <th scope="row">{{kitap.adi}}</th>
+                <td>{{kitap.yazar}}</td>
+                <td>{{kitap.konu}}</td>
+                <td>{{kitap.puan}}</td>
+                <td><button type="button" 
+                            class="btn btn-danger"
+                            (click)="onDeleteRow(kitap.id)" >Sil</button></td>
+              </tr>
+             
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+
+
+
+
+
