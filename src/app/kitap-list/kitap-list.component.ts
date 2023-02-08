@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from "@angular/forms";
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { KitapService } from '../kitap.service';
 import { Kitap } from './kitap.model';
 
@@ -12,12 +14,18 @@ export class KitapListComponent implements OnInit {
 
   kitaplar:Kitap[]=[];
   @ViewChild('f') form:NgForm;
+  private userSub=Subscription;
+  isAuthenticated = false;
 
-  constructor(private kitapService:KitapService) { }
+  constructor(private kitapService:KitapService,private authService:AuthService) { }
 
   ngOnInit(): void {
       this.kitapService.getKitaplar().subscribe(books=>{
         this.kitaplar=books;
+      });
+
+      this.authService.user.subscribe(user=>{
+        this.isAuthenticated = !!user;
       });
      
   }

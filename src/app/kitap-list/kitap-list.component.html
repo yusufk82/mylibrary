@@ -40,7 +40,7 @@
                 <td>{{kitap.yazar}}</td>
                 <td>{{kitap.konu}}</td>
                 <td>{{kitap.puan}}</td>
-                <td><button type="button" 
+                <td *ngIf="isAuthenticated"><button type="button" 
                             class="btn btn-danger"
                             (click)="onDeleteRow(kitap.id)" >Sil</button></td>
               </tr>
