@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from "@angular/forms";
+import { Router } from '@angular/router';
 
 import { KitapService } from '../kitap.service';
 
@@ -14,7 +15,7 @@ export class KitapEditComponent implements OnInit {
   @ViewChild('f') form:NgForm;
   show:boolean=false;
 
-  constructor(private kitapService:KitapService) { }
+  constructor(private kitapService:KitapService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -26,9 +27,10 @@ export class KitapEditComponent implements OnInit {
      let returnObject=this.kitapService.kitapKaydet(null,this.form.value.adi,this.form.value.yazar,this.form.value.konu,this.form.value.puan);
 
      if(returnObject != null) {
-      console.log("kaydedildi.");
-      this.show=true;
-      this.form.resetForm();
+          console.log("kaydedildi.");
+          this.show=true;
+          this.form.resetForm();
+          this.router.navigate(['/kitaplar']);
      }
 
 
