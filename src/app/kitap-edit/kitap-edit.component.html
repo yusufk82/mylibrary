@@ -8,8 +8,8 @@
 
 
 
-<div class="alert alert-success" role="alert" *ngIf="show">
-  Kitap kaydedildi.
+<div class="alert alert-danger" role="alert" *ngIf="show">
+  Bu kitap daha önce kaydedildi.
 </div>
 <form #f="ngForm" (ngSubmit)="onSubmit()"> 
     <div class="form-group">

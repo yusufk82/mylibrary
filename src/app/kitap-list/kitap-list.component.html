@@ -1,7 +1,4 @@
 
-
-
-
     <div class="row" style="padding-top:20px;">
       <div class="col">
         <form (ngSubmit)="kitapAra()" #f="ngForm">
@@ -34,6 +31,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
+                <th scope="col">Sıra Nu</th>
                 <th scope="col">Kitap</th>
                 <th scope="col">Yazar</th>
                 <th scope="col">Konu</th>
@@ -41,7 +39,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr  *ngFor="let kitap of kitaplar">
+              <tr  *ngFor="let kitap of pageKitaplar; let i=index">
+                <th scope="row">{{i+1}}</th>
                 <th scope="row">{{kitap.adi}}</th>
                 <td>{{kitap.yazar}}</td>
                 <td>{{kitap.konu}}</td>
@@ -54,9 +53,18 @@
             </tbody>
           </table>
 
-        </div>
-    </div>
 
+        </div>
+        
+       
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#" (click)="changePage(0)">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#" (click)="changePage(ix)" *ngFor="let i of pages;let ix=index">{{i}}</a></li>
+        <li class="page-item"><a class="page-link" href="#" (click)="changePage(-1)">Next</a></li>
+      </ul>
+    </nav>
 
 
 

@@ -22,18 +22,29 @@ export class KitapEditComponent implements OnInit {
 
   onSubmit() {
 
-    
+    let kitapAdi=this.form.value.adi;
+    let yazarAdi=this.form.value.yazarAdi;
+    let konu=this.form.value.konu;
+    let puan=this.form.value.puan;
 
-     let returnObject=this.kitapService.kitapKaydet(null,this.form.value.adi,this.form.value.yazar,this.form.value.konu,this.form.value.puan);
-
-     if(returnObject != null) {
-          console.log("kaydedildi.");
+    this.kitapService.getKitaplar().subscribe(books=>{
+ 
+      const filteredBooks= books.filter(t=>t.adi==kitapAdi);
+      if(filteredBooks.length>0) {
           this.show=true;
-          this.form.resetForm();
-          this.router.navigate(['/kitaplar']);
-     }
+      } else {
+        this.kitapKaydet(kitapAdi,yazarAdi,konu,puan);
+      }
+    });
+  }
 
-
+  kitapKaydet(kitapAdi:string,yazar:string,konu:string,puan:number) {
+    let returnObject=this.kitapService.kitapKaydet(null,kitapAdi,yazar,konu,puan);
+    if(returnObject != null) {
+      console.log("kaydedildi.");
+      this.form.resetForm();
+      this.router.navigate(['/kitaplar']);
+    }
   }
 
 }

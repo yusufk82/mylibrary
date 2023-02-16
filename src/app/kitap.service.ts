@@ -40,17 +40,15 @@ export class KitapService implements OnInit{
      return this.http.get<{[key:string]:Kitap}>(this.api+'/kitaplarim.json').pipe
             (map(responseData=>{
             const bookArray:Kitap[]=[];
-            console.log(responseData);
-            for (const key  in responseData) {
-                console.log("key:"+key);
-                if(responseData.hasOwnProperty(key)){
-                    console.log("responseData[key]:"+responseData[key])
+     
+            for (const key  in responseData) {          
+                if(responseData.hasOwnProperty(key)){                  
                 bookArray.push({...responseData[key],id:key});
                 }
             }
 
-            console.log(bookArray[0]);
-            
+        
+    
             return bookArray;
         }));
      
